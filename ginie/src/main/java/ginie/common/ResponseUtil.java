@@ -24,4 +24,12 @@ public class ResponseUtil {
     public static Response badRequest() {
         return Response.status(Response.Status.BAD_REQUEST).entity(JsonUtils.getResultJson(RESULT, Result.FAILURE)).build();
     }
+
+    public static Response unauthorised() {
+        return Response.status(Response.Status.UNAUTHORIZED).entity(JsonUtils.getResultJson(RESULT, Result.FAILURE)).build();
+    }
+
+    public static Response token(String token) {
+        return Response.status(Response.Status.BAD_REQUEST).entity(JsonUtils.getResultJson("token", token)).build();
+    }
 }

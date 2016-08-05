@@ -30,4 +30,11 @@ public class JsonUtils {
         return jsonObject.toString();
     }
 
+
+    public static String getResultJson(String key, String restValues) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put(key, restValues);
+        return jsonObject.toString();
+    }
+
 }

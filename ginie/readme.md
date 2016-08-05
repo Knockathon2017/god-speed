@@ -1,3 +1,8 @@
+### mongo
+- create database aladin
+- db.user.insert({"userName": "godspeed", "password": "password@123"})
+
+
 ### Run ginie
 -  mvn clean package
 -  java -jar target/ginie-1.0-SNAPSHOT-jar-with-dependencies.jar -c ../conf/ginie.conf.yml -l ../conf/ginie.logback.xml

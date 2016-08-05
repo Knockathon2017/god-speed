@@ -3,6 +3,7 @@ package ginie.rest;
 import com.google.inject.Inject;
 import ginie.common.ResponseUtil;
 import ginie.mongo.service.MongoServices;
+import ginie.settings.GinieSettings;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -24,6 +25,9 @@ public class EndPoints {
 
     @Inject
     private MongoServices mongoServices;
+
+    @Inject
+    private GinieSettings settings;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
@@ -90,6 +94,35 @@ public class EndPoints {
     public Response listAll() {
         try {
             return Response.ok(mongoServices.listAllMicrosInfo().toString()).build();
+        } catch (Exception e) {
+            return ResponseUtil.internalServerError();
+        }
+    }
+
+
+    @Path("/login")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response login(String json) {
+
+        JSONObject jsonObject;
+        try {
+            jsonObject = new JSONObject(json);
+        } catch (JSONException e) {
+            return ResponseUtil.badRequest();
+        }
+
+        try {
+
+            String username = jsonObject.getString("username");
+            String password = jsonObject.getString("password");
+
+            if (username.equals(settings.get("username")) && password.equals(settings.get("password"))) {
+                return ResponseUtil.token(settings.get("security.token"));
+            } else {
+                return ResponseUtil.unauthorised();
+            }
         } catch (Exception e) {
             return ResponseUtil.internalServerError();
         }
