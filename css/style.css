@@ -4,7 +4,7 @@ Knockathon 2016 - Exzeo.
 Dhruv, Eshu, Preiksha, Tanmay, Vishal */
 
 body{
-	background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.8)), url('../img/pexels-photo.jpg');
+	background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.85)), url('../img/pexels-photo.jpg');
 	height: 100vh;
 	background-position: center;
 	background-size: cover;
@@ -17,6 +17,13 @@ body{
 	box-shadow: 0 5px 10px rgba(0, 0 , 0, 0.3);
 	border-radius: 2pt;
 	margin-top: 20vh;
+	margin-bottom: 20vh;
+}
+
+h2.form-heading{
+	margin-top: -35pt;
+	float: left;
+	color: #fff;
 }
 
 .no-margin-top{
@@ -73,10 +80,6 @@ a.white-text:hover{
 	font-weight: bold;
 }
 
-.btn-distancer{
-	padding-top:20px
-}
-
 .pad-all{
 	padding: 15px;
 }
@@ -101,7 +104,7 @@ a.white-text:hover{
 /* Navigation Bar */
 
 nav{
-	background: rgba(0,0,0,0.3) !important;
+	background: rgba(0,0,0,0.9) !important;
 	color: #fff !important;
 	border-color: transparent;
 }
@@ -132,3 +135,19 @@ nav{
 	font-weight: normal;
 	line-height: 32px;
 }
+
+
+/* Table Customs */
+
+div.table-holder{
+	background: #f3f3f3
+}
+
+.param-type{
+	width: 100pt;
+}
+
+thead{
+	font-weight: bold;
+}
+
