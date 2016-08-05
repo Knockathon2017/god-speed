@@ -4,7 +4,7 @@ Knockathon 2016 - Exzeo.
 Dhruv, Eshu, Preiksha, Tanmay, Vishal */
 
 body{
-	background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.8)), url('../img/pexels-photo.jpg');
+	background: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.85)), url('../img/pexels-photo.jpg');
 	height: 100vh;
 	background-position: center;
 	background-size: cover;
@@ -17,6 +17,17 @@ body{
 	box-shadow: 0 5px 10px rgba(0, 0 , 0, 0.3);
 	border-radius: 2pt;
 	margin-top: 20vh;
+	margin-bottom: 20vh;
+}
+
+h2.form-heading{
+	margin-top: -35pt;
+	float: left;
+	color: #fff;
+}
+
+.no-margin-top{
+	margin-top: 0;
 }
 
 .stan-pad{
@@ -35,6 +46,14 @@ body{
 	border-radius: 0;
 }
 
+.no-radius-top{
+	border-radius: 0 0 2pt 2pt;
+}
+
+.no-radius-bottom{
+	border-radius: 2pt 2pt 0 0;
+}
+
 .white-text{
 	color: #fff;
 	transition: all .3s;
@@ -49,14 +68,43 @@ a.white-text:hover{
 }
 
 .border-bottom-black{
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.help-text{
+	color: #999;
+}
+
+.help-text-focus{
+	color: #777;
+	font-weight: bold;
+}
+
+.pad-all{
+	padding: 15px;
+}
+
+.pad-left{
+	padding-left: 15px;
+}
+
+.pad-right{
+	padding-right: 15px;
+}
+
+.pad-top{
+	padding-top: 15px;
+}
+
+.pad-bottom{
+	padding-bottom: 15px;
 }
 
 
 /* Navigation Bar */
 
 nav{
-	background: rgba(0,0,0,0.3) !important;
+	background: rgba(0,0,0,0.9) !important;
 	color: #fff !important;
 	border-color: transparent;
 }
@@ -75,4 +123,31 @@ nav{
 	color: #aaa;
 }
 
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover{
+	color: #fff;
+}
+
+
+
+/* Add New */
+
+.status-text{
+	font-weight: normal;
+	line-height: 32px;
+}
+
+
+/* Table Customs */
+
+div.table-holder{
+	background: #f3f3f3
+}
+
+.param-type{
+	width: 100pt;
+}
+
+thead{
+	font-weight: bold;
+}
 

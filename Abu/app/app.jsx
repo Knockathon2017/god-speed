@@ -1,13 +1,16 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var $ = require('jquery');
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 
 var Login = require('Login');
+var Dashboard = require('Dashboard');
 
 ReactDOM.render(
     <Router history={hashHistory}>
-        <Route path='/' component={Login}>
+        <Route path="/" component={Dashboard}>
+
         </Route>
-    </Router>, 
+    </Router>,
     document.getElementById("app")
 );

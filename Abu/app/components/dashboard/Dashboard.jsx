@@ -1,7 +1,6 @@
 var React = require('react');
 var ServiceList = require('ServiceList');
-var AddService = require('AddService');
-var SearchService = require('SearchService');
+var Header = require('Header');
 
 
 var Dashboard = React.createClass({
@@ -14,7 +13,7 @@ var Dashboard = React.createClass({
         };
     },
     handleAddService: function () {
-
+        console.log("eshu");
     },
     handleServiceSearch: function (searchText) {
         this.setState({
@@ -25,9 +24,9 @@ var Dashboard = React.createClass({
 
         return (
             <div>
-                <SearchService />
+                <Header onAddServiceClick={this.handleAddService}/>
                 <ServiceList />
-                <AddService />
+
             </div>
         )
     }
