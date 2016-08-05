@@ -11,3 +11,9 @@ mongo.host: 127.0.0.1
 mongo.port: 27017
 mongo.db.name: aladin
 mongo.micro.collection.name: microsInfo
+mongo.user.collection.name: user
+
+### securiy
+security.token: 57a4e7bf1dbc234dc145933f
+username: godspeed
+password: password@123
