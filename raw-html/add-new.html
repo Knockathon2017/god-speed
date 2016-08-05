@@ -10,7 +10,7 @@
 	
 	
 		<!-- Universal Nav Bar -->
-		<nav class="navbar navbar-default no-radius remove-border border-bottom-black">
+		<nav class="navbar navbar-default navbar-fixed-top no-radius remove-border border-bottom-black">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
@@ -78,38 +78,63 @@
 				<form>
 					<div class="col-md-6 col-md-offset-3 stan-pad login-card">
 					
-						<div class="row" style="border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 20px;">
+						<h2 class="form-heading">Add New</h2>
+					
+						<div class="row pad-bottom border-bottom-black">
 							<div class="form-group col-md-8">
 								<input type="text" class="form-control" id="host" placeholder="Host">
 							</div>
 							<div class="form-group col-md-4">
 								<input type="text" class="form-control" id="port" placeholder="Port">
 							</div>
-							<span class="help-text" style="padding-left: 15px;">Press <span class="help-text-focus">'Tab'</span> to fetch host information</span>
+							<span class="help-text pad-left">Press <span class="help-text-focus">'Tab'</span> to fetch host information</span>
 						</div>
 							
-						<div class="row" style="padding-top:20px">
-								<div class="form-group col-md-7">
-									<label for="exampleInputEmail1">URL</label>
-									<input type="text" class="form-control" id="host" placeholder="Host">
-								</div>
-								<div class="form-group col-md-5">
-									<label for="exampleInputEmail1">Log Path</label><br>
-									<a href="#" class="status-text">/disk2/test.log</a>
-								</div>
-								<div class="form-group col-md-7">
-									<label for="exampleInputEmail1">Tags</label>
-									<input type="text" class="form-control" id="port" placeholder="Tags" value="Tag1, Tag2">
-								</div>
-								<div class="form-group col-md-5">
-									<label for="exampleInputEmail1">Status</label><br>
-									<label for="status" class="status-text text-success">Status</label>
-								</div>
+						<div class="row pad-top border-bottom-black">
+							<div class="form-group col-md-7">
+								<label for="exampleInputEmail1">URL</label>
+								<input type="text" class="form-control" id="host" placeholder="Host">
 							</div>
-							<div class="btn-distancer">
-								<button type="submit" class="btn btn-default">Cancel</button>
-								<button type="submit" class="btn btn-success pull-right">Add</button>
+							<div class="form-group col-md-5">
+								<label for="exampleInputEmail1">Log Path</label><br>
+								<a href="#" class="status-text">/disk2/test.log</a>
 							</div>
+							<div class="form-group col-md-7">
+								<label for="exampleInputEmail1">Tags</label>
+								<input type="text" class="form-control" id="port" placeholder="Tags" value="Tag1, Tag2">
+							</div>
+							<div class="form-group col-md-5">
+								<label for="exampleInputEmail1">Status</label><br>
+								<label for="status" class="status-text text-success">Status</label>
+							</div>
+						</div>	
+							
+						<div class="row pad-all border-bottom-black">
+							<span class="help-text">service_name : <span class="help-text-focus">Multiply</span></span><br>
+							<span class="help-text">method_name : <span class="help-text-focus">/mul</span></span><br><br>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>name</th>
+										<th class="param-type">type</th>
+									</tr>
+								</thead>
+								<tr>
+									<td>p1</td>
+									<td>int</td>
+								</tr>
+								<tr>
+									<td>p2</td>
+									<td>int</td>
+								</tr>								
+							</table>
+						</div>
+													
+						
+						<div class="pad-top">
+							<button type="submit" class="btn btn-default">Cancel</button>
+							<button type="submit" class="btn btn-success pull-right">Add</button>
+						</div>
 					</div>
 					
 				</form>			

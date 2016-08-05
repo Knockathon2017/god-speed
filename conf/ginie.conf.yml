@@ -1,0 +1,13 @@
+################Control configuration File##################
+
+
+##jetty settings
+jetty.port: 8080
+jetty.host.ip: 0.0.0.0
+
+
+##database properties mongo
+mongo.host: 127.0.0.1
+mongo.port: 27017
+mongo.db.name: aladin
+mongo.micro.collection.name: microsInfo
