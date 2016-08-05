@@ -1,4 +1,4 @@
-/* God-Speed StyleSheet for 
+/* GodSpeed StyleSheet for 
 Knockathon 2016 - Exzeo.
 
 Dhruv, Eshu, Preiksha, Tanmay, Vishal */
@@ -17,7 +17,12 @@ body{
 	box-shadow: 0 5px 10px rgba(0, 0 , 0, 0.3);
 	border-radius: 2pt;
 	margin-top: 20vh;
-	margin-bottom: 20vh;
+	margin-bottom: 15vh;
+}
+
+.margin-remove-top-bottom{
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 h2.form-heading{
@@ -78,6 +83,10 @@ a.white-text:hover{
 .help-text-focus{
 	color: #777;
 	font-weight: bold;
+}
+
+.no-pad{
+	padding: 0;
 }
 
 .pad-all{
@@ -151,3 +160,9 @@ thead{
 	font-weight: bold;
 }
 
+
+/* Modal Customs */
+
+div.modal-content{
+	background-color: transparent;
+}

@@ -3,9 +3,8 @@ var React = require('react');
 var AddServiceForm = React.createClass({
     render: function(){
         return (
-            <div>
                 <form>
-                    <div className="col-md-6 col-md-offset-3 stan-pad login-card">
+                    <div className="stan-pad login-card margin-remove-top-bottom">
                         <h2 className="form-heading">Add New</h2>
                         <div className="row pad-bottom border-bottom-black">
                             <div className="form-group col-md-8">
@@ -62,7 +61,6 @@ var AddServiceForm = React.createClass({
                         </div>
                     </div>
                 </form>
-            </div>
         );
     }
 });
