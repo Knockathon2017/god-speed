@@ -25,7 +25,7 @@ var Header = React.createClass({
                                 <span className="icon-bar"></span>
                             </button>
                             <a className="navbar-brand" href="#">
-                                <img id="team-logo" className="img img-responsive" src="//logo-png.com/logopng/thumbs/spss-logo.png" alt="Team Logo"/>
+                                <img id="team-logo" className="img img-responsive" src="../img/spss-logo.png" alt="Team Logo"/>
                             </a>
                         </div>
                         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -52,6 +52,7 @@ var Header = React.createClass({
                                 <button type="submit" className="btn btn-default">Submit</button>
                             </form>
                             <ul className="nav navbar-nav navbar-right">
+                               	<li><AddService onHandleClick={this.handlerAddServiceClick}/></li>
                                 <li><a href="#">Link</a></li>
                                 <li className="dropdown">
                                     <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
@@ -65,7 +66,7 @@ var Header = React.createClass({
                                 </li>
                             </ul>
                         </div>
-                        <AddService onHandleClick={this.handlerAddServiceClick}/>
+                        
                     </div>
                 </nav>
                 <SearchService />

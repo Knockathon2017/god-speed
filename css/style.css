@@ -20,6 +20,11 @@ body{
 	margin-bottom: 15vh;
 }
 
+.margin-remove-top-bottom{
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
 h2.form-heading{
 	margin-top: -35pt;
 	float: left;
@@ -78,6 +83,10 @@ a.white-text:hover{
 .help-text-focus{
 	color: #777;
 	font-weight: bold;
+}
+
+.no-pad{
+	padding: 0;
 }
 
 .pad-all{
@@ -151,3 +160,14 @@ thead{
 	font-weight: bold;
 }
 
+
+/* Modal Customs */
+
+div.modal-content{
+	background-color: transparent;
+}
+
+.close{
+	opacity: 0.8;
+	color: #fff;
+}
