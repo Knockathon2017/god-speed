@@ -77,6 +77,26 @@ a.white-text:hover{
 	padding-top:20px
 }
 
+.pad-all{
+	padding: 15px;
+}
+
+.pad-left{
+	padding-left: 15px;
+}
+
+.pad-right{
+	padding-right: 15px;
+}
+
+.pad-top{
+	padding-top: 15px;
+}
+
+.pad-bottom{
+	padding-bottom: 15px;
+}
+
 
 /* Navigation Bar */
 
