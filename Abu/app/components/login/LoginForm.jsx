@@ -48,24 +48,22 @@ var LoginForm = React.createClass({
     },
     render: function(){
         return (
-            <div className="row">
-                <form onSubmit={this.onloginButtonClick}>
-                    <div className="form-group">
-                        <label for="exampleInputEmail1">Username</label>
-                        <input type="email" className="form-control" ref="username" placeholder="Username" />
-                    </div>
-                    <div className="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" className="form-control" ref="password" placeholder="Password" />
-                    </div>
-                    <div className="checkbox">
-                        <label>
-                            <input type="checkbox" /> Remember Me
-                        </label>
-                    </div>
-                    <button type="submit" className="btn btn-primary">Login</button>
-                </form>
-            </div>
+            <form onSubmit={this.onloginButtonClick}>
+                <div className="form-group">
+                    <label for="exampleInputEmail1">Username</label>
+                    <input type="email" className="form-control" ref="username" placeholder="Username" />
+                </div>
+                <div className="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" className="form-control" ref="password" placeholder="Password" />
+                </div>
+                <div className="checkbox">
+                    <label>
+                        <input type="checkbox" /> Remember Me
+                    </label>
+                </div>
+                <button type="submit" className="btn btn-primary">Login</button>
+            </form>
         );
     }
 });
