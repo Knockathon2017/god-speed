@@ -3,10 +3,6 @@ Knockathon 2016 - Exzeo.
 
 Dhruv, Eshu, Preiksha, Tanmay, Vishal */
 
-#team-logo{
-	height: 80pt;
-}
-
 body{
 	background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.8)), url('../img/pexels-photo.jpg');
 	height: 100vh;
@@ -35,6 +31,10 @@ body{
 	text-align: center;
 }
 
+.no-radius{
+	border-radius: 0;
+}
+
 .white-text{
 	color: #fff;
 	transition: all .3s;
@@ -43,3 +43,36 @@ body{
 a.white-text:hover{
 	color: #f1c40f;
 }
+
+.remove-border{
+	border: none;
+}
+
+.border-bottom-black{
+	border-bottom: 1px solid #000;
+}
+
+
+/* Navigation Bar */
+
+nav{
+	background: rgba(0,0,0,0.3) !important;
+	color: #fff !important;
+	border-color: transparent;
+}
+
+#team-logo{
+	height: 80pt;
+	margin-top: -15pt;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
+	background: rgba(0,0,0,0.8);
+	color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a{
+	color: #aaa;
+}
+
+
