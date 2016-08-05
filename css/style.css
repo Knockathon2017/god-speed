@@ -19,6 +19,10 @@ body{
 	margin-top: 20vh;
 }
 
+.no-margin-top{
+	margin-top: 0;
+}
+
 .stan-pad{
 	padding: 15pt;
 }
@@ -35,6 +39,14 @@ body{
 	border-radius: 0;
 }
 
+.no-radius-top{
+	border-radius: 0 0 2pt 2pt;
+}
+
+.no-radius-bottom{
+	border-radius: 2pt 2pt 0 0;
+}
+
 .white-text{
 	color: #fff;
 	transition: all .3s;
@@ -49,7 +61,20 @@ a.white-text:hover{
 }
 
 .border-bottom-black{
-	border-bottom: 1px solid #000;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.help-text{
+	color: #999;
+}
+
+.help-text-focus{
+	color: #777;
+	font-weight: bold;
+}
+
+.btn-distancer{
+	padding-top:20px
 }
 
 
@@ -75,4 +100,15 @@ nav{
 	color: #aaa;
 }
 
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover{
+	color: #fff;
+}
 
+
+
+/* Add New */
+
+.status-text{
+	font-weight: normal;
+	line-height: 32px;
+}
