@@ -39,16 +39,30 @@ var AddServiceForm = React.createClass({
             "url": that.state.serviceUrl+""+config.info,
             "logPath": that.state.logPath,
             "status": "",
-            "tags": that.getTagList(that.state.tags, true)
+            "tags": that.getTagList(that.state.tags, true),
+            "methodUrl": that.state.serviceUrl+""+that.state.functionName,
+            "serviceName": that.state.serviceName
         };
     },
     onClickCancel: function(evt){
-        console.log("close popup");
+        debugger
+        $(".ReactTags__tag").remove();
+        this.refs.sName.value = '';
+        this.refs.fName.value = '';
+        this.setState({
+            serviceUrl: "",
+            logPath: "",
+            tags: [],
+            serviceName: "",
+            functionName: "",
+            params:[]
+        });
     },
     onClickSave: function(evt){
+        var that = this;
         axios.post(baseUrl+''+saveService,this.getPostJsonData(),POST_CONFIG).then(function(res){
-            debugger;
             alert("success");
+            that.props.onSuccessAddingService();
         }, function(res){
             alert("error");
         });
@@ -117,8 +131,8 @@ var AddServiceForm = React.createClass({
                             </div>
                         </div>
                         <div className="row pad-all border-bottom-black">
-                            <span className="help-text">service_name : <span className="help-text-focus">{this.state.serviceName}</span></span><br/>
-                            <span className="help-text">method_name : <span className="help-text-focus">{this.state.functionName}</span></span><br/><br/>
+                            <span className="help-text">service_name : <span className="help-text-focus" ref="sName">{this.state.serviceName}</span></span><br/>
+                            <span className="help-text">method_name : <span className="help-text-focus" ref="fName">{this.state.functionName}</span></span><br/><br/>
                             <table className="table table-hover">
                                 <thead>
                                 <tr>
@@ -128,14 +142,20 @@ var AddServiceForm = React.createClass({
                                 </thead>
                                 <tbody>
                                 {
-
-
+                                    Object.keys(params).map(function(obj){
+                                        return (
+                                            <tr>
+                                                <td>{params[obj].name}</td>
+                                                <td>{params[obj].type}</td>
+                                            </tr>
+                                        );
+                                    })
                                 }
                                 </tbody>
                             </table>
                         </div>
                         <div className="pad-top">
-                            <button type="submit" className="btn btn-default" onClick={this.onClickCancel}>Cancel</button>
+                            <button type="submit" className="btn btn-default" data-dismiss="modal" onClick={this.onClickCancel}>Cancel</button>
                             <button type="submit" className="btn btn-success pull-right" onClick={this.onClickSave}>Add</button>
                         </div>
                     </div>
