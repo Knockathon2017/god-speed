@@ -39161,7 +39161,7 @@
 	                        { className: 'row pad-bottom border-bottom-black' },
 	                        React.createElement(
 	                            'div',
-	                            { className: 'form-group col-md-8' },
+	                            { className: 'form-group col-md-12' },
 	                            React.createElement('input', { type: 'text', className: 'form-control', id: 'host', placeholder: 'Host', ref: 'urlTxt', onBlur: this.onBlurHandler })
 	                        ),
 	                        React.createElement(
@@ -39202,7 +39202,7 @@
 	                        ),
 	                        React.createElement(
 	                            'div',
-	                            { className: 'form-group col-md-7' },
+	                            { className: 'form-group col-md-12' },
 	                            React.createElement(
 	                                'label',
 	                                { htmlFor: 'exampleInputEmail1' },
