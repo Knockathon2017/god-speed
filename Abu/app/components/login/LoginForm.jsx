@@ -32,18 +32,11 @@ var LoginForm = React.createClass({
             alert("Please enter a valid username/password!!");
             return false;
         }
-            
-        alert("send to server username="+usernameValue+"     password="+passwordValue);
-        // axios.post(loginUrl,{username:usernameValue, password:passwordValue}, POST_CONFIG).then(function(res){
-        //     console.log("-----success------"+res.data);
-        // }, function(res){
-        //     console.log("-----error------");
-        // });
 
-        axios.get(loginUrl).then(function(res){
-            console.log("-----success------"+res.data);
+        axios.post(loginUrl,{username:usernameValue, password:passwordValue}, POST_CONFIG).then(function(res){
+            alert("success");
         }, function(res){
-            console.log("-----error------");
+            alert("error");
         });
     },
     render: function(){

@@ -3,8 +3,9 @@ var axios = require('axios');
 var config = require('Config');
 import { WithContext as ReactTags } from 'react-tag-input';
 
-var {baseUrl, info} = config;
+var {baseUrl, info, saveService, POST_CONFIG} = config;
 var infoUrl = baseUrl+""+info;
+//POST_CONFIG.headers.Authorization = '57a4e7bf1dbc234dc145933f';
 
 var AddServiceForm = React.createClass({
     getInitialState: function(){
@@ -17,25 +18,44 @@ var AddServiceForm = React.createClass({
             params: []
         };
     },
-    getTagList: function(tags){
+    getTagList: function(tags, bPlane){
         var result = [];
-        if(tags.length > 0){
+        if(bPlane){
+            tags.forEach(function(obj,index){
+                result.push(obj.text);
+            });
+        }else if(tags.length > 0){
             tags.forEach(function(obj,index){
                 result.push({id:index,text:obj})
             });
         }
         return result;
     },
+    getPostJsonData: function(){
+         var that = this;
+        return {
+            "ip": that.state.serviceUrl,
+            "port": "",
+            "url": that.state.serviceUrl+""+config.info,
+            "logPath": that.state.logPath,
+            "status": "",
+            "tags": that.getTagList(that.state.tags, true)
+        };
+    },
     onClickCancel: function(evt){
         console.log("close popup");
     },
     onClickSave: function(evt){
-
+        axios.post(baseUrl+''+saveService,this.getPostJsonData(),POST_CONFIG).then(function(res){
+            debugger;
+            alert("success");
+        }, function(res){
+            alert("error");
+        });
     },
     onBlurHandler: function(evt){
         var url = this.refs.urlTxt.value.trim();
         var that = this;
-        debugger;
         axios.get(url+""+config.info).then(function(res){
             var {methods, service_name,tags} = res.data;
             var tagList = that.getTagList(tags);
@@ -108,14 +128,8 @@ var AddServiceForm = React.createClass({
                                 </thead>
                                 <tbody>
                                 {
-                                    params.map(function(obj,index){
-                                        return (
-                                            <tr>
-                                                <td>{obj.name}</td>
-                                                <td>{obj.type}</td>
-                                            </tr>
-                                        );
-                                    })
+
+
                                 }
                                 </tbody>
                             </table>
