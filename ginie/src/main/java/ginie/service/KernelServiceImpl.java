@@ -4,8 +4,11 @@ import com.google.inject.Injector;
 import ginie.GinieException;
 import ginie.boot.CommandOptions;
 import ginie.boot.ControlServletModule;
+import ginie.httpclient.HttpClientModule;
 import ginie.mongo.MongoModule;
 import ginie.rest.RestModule;
+import ginie.scheduler.SchedulerModule;
+import ginie.scheduler.SchedulerService;
 import ginie.server.ServerModule;
 import ginie.server.ServerService;
 import ginie.settings.GinieSettings;
@@ -28,6 +31,7 @@ public class KernelServiceImpl extends AbstractLifeCycleService<KernelService> i
 
             if (lifeCycle.canMoveToStarted()) {
                 injector.getInstance(ServerService.class).start();
+                injector.getInstance(SchedulerService.class).start();
             }
 
             lifeCycle.moveToStarted();
@@ -66,6 +70,8 @@ public class KernelServiceImpl extends AbstractLifeCycleService<KernelService> i
         serviceBuilder.addModule(new RestModule());
         serviceBuilder.addModule(new ServiceModule());
         serviceBuilder.addModule(new MongoModule());
+        serviceBuilder.addModule(new HttpClientModule());
+        serviceBuilder.addModule(new SchedulerModule());
 
         injector = serviceBuilder.createInjector();
     }

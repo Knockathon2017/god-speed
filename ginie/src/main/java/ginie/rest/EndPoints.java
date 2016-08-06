@@ -13,6 +13,7 @@ import javax.inject.Singleton;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * Created by dhruvr
@@ -129,4 +130,20 @@ public class EndPoints {
     }
 
 
+    @GET
+    @Path("/tags/{tag}")
+    @Produces("text/plain")
+    public Response tags(@PathParam("tag") String tag) {
+        try {
+            List<String> list = mongoServices.getUrlByenabledandTag(tag.toLowerCase());
+            if (list.isEmpty()) {
+                return ResponseUtil.internalServerError();
+            }else{
+                return Response.ok().entity(list.get(0)).build();
+            }
+
+        } catch (Exception e) {
+            return ResponseUtil.internalServerError();
+        }
+    }
 }

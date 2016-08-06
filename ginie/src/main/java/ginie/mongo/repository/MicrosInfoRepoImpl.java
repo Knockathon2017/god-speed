@@ -9,6 +9,7 @@ import com.mongodb.client.model.Filters;
 import ginie.mongo.entities.MicroInfo;
 import ginie.settings.GinieSettings;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.util.List;
 
@@ -44,9 +45,19 @@ public class MicrosInfoRepoImpl implements MicrosInfoRepo {
     }
 
     @Override
+    public FindIterable<Document> getActiveByTag(String tag){
+       return mongoCollection.find(Filters.and(new Document("status", "active"), Filters.in("tags", tag)));
+    }
+
+    @Override
     public void save(MicroInfo microInfo) {
         Document document = microInfo.createDocumentInsert();
         mongoCollection.insertOne(document);
+    }
+
+    @Override
+    public void updateStatus(ObjectId idValue, String status){
+        mongoCollection.updateOne(Filters.eq("_id", idValue), new Document("$set", new Document("status", status)));
     }
 
 }

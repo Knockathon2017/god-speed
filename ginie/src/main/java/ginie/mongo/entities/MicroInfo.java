@@ -11,32 +11,63 @@ import java.util.List;
 
 public class MicroInfo {
 
-//    private String id;
+    //    private String id;
     private String IP;
-    private String port;
     private String url;
     private List<String> tags;
     private String logPath;
     private String status;
+    private String methodUrl;
+    private String serviceName;
 
-//    public String getId() {
-//        return id;
-//    }
-//
-//    public String getIP() {
-//        return IP;
-//    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MicroInfo microInfo = (MicroInfo) o;
+
+        if (IP != null ? !IP.equals(microInfo.IP) : microInfo.IP != null) return false;
+        if (!url.equals(microInfo.url)) return false;
+        if (!tags.equals(microInfo.tags)) return false;
+        if (logPath != null ? !logPath.equals(microInfo.logPath) : microInfo.logPath != null) return false;
+        if (status != null ? !status.equals(microInfo.status) : microInfo.status != null) return false;
+        if (methodUrl != null ? !methodUrl.equals(microInfo.methodUrl) : microInfo.methodUrl != null) return false;
+        return !(serviceName != null ? !serviceName.equals(microInfo.serviceName) : microInfo.serviceName != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = IP != null ? IP.hashCode() : 0;
+        result = 31 * result + url.hashCode();
+        result = 31 * result + tags.hashCode();
+        result = 31 * result + (logPath != null ? logPath.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (methodUrl != null ? methodUrl.hashCode() : 0);
+        result = 31 * result + (serviceName != null ? serviceName.hashCode() : 0);
+        return result;
+    }
+
+    public Document createDocumentInsert() {
+        return new Document()
+                .append("IP", IP)
+                .append("url", url)
+                .append("tags", tags)
+                .append("logPath", logPath)
+                .append("status", status)
+                .append("methodUrl", methodUrl)
+                .append("serviceName", serviceName);
+    }
+
+
+    public String getIP() {
+        return IP;
+    }
 
     public void setIP(String IP) {
         this.IP = IP;
-    }
-
-    public String getPort() {
-        return port;
-    }
-
-    public void setPort(String port) {
-        this.port = port;
     }
 
     public String getUrl() {
@@ -71,66 +102,19 @@ public class MicroInfo {
         this.status = status;
     }
 
-
-    @Override
-    public String toString() {
-        return "MicroInfo{" +
-                "IP='" + IP + '\'' +
-                ", port='" + port + '\'' +
-                ", url='" + url + '\'' +
-                ", tags=" + tags +
-                ", logPath='" + logPath + '\'' +
-                ", status='" + status + '\'' +
-                '}';
+    public String getMethodUrl() {
+        return methodUrl;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        MicroInfo MicroInfo = (ginie.mongo.entities.MicroInfo) o;
-
-        if (!IP.equals(MicroInfo.IP)) return false;
-        if (!port.equals(MicroInfo.port)) return false;
-        if (url != null ? !url.equals(MicroInfo.url) : MicroInfo.url != null) return false;
-        if (tags != null ? !tags.equals(MicroInfo.tags) : MicroInfo.tags != null) return false;
-        if (logPath != null ? !logPath.equals(MicroInfo.logPath) : MicroInfo.logPath != null) return false;
-        return status != null ? status.equals(MicroInfo.status) : MicroInfo.status == null;
-
+    public void setMethodUrl(String methodUrl) {
+        this.methodUrl = methodUrl;
     }
 
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + IP.hashCode();
-        result = 31 * result + port.hashCode();
-        result = 31 * result + (url != null ? url.hashCode() : 0);
-        result = 31 * result + (tags != null ? tags.hashCode() : 0);
-        result = 31 * result + (logPath != null ? logPath.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        return result;
+    public String getServiceName() {
+        return serviceName;
     }
 
-    public static MicroInfo createDocument(Document document){
-        MicroInfo microInfo = new MicroInfo();
-        microInfo.setLogPath(document.getString("logPath"));
-        microInfo.setStatus(document.getString("status"));
-        microInfo.setTags((ArrayList<String>)document.get("tags"));
-        microInfo.setPort(document.getString("port"));
-        microInfo.setIP(document.getString("ip"));
-        microInfo.setUrl(document.getString("url"));
-        return microInfo;
-    }
-
-    public Document createDocumentInsert() {
-        return new Document()
-                .append("IP", IP)
-                .append("port", port)
-                .append("url", url)
-                .append("tags", tags)
-                .append("logPath", logPath)
-                .append("status", status);
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
     }
 }
