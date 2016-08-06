@@ -46,7 +46,6 @@ public class SchedulerServiceImpl extends AbstractLifeCycleService<SchedulerServ
         if (!lifeCycle.canMoveToStopped()) {
             stopScheduler();
         }
-        lifeCycle.moveToClosed();
     }
 
     @Override
@@ -54,7 +53,6 @@ public class SchedulerServiceImpl extends AbstractLifeCycleService<SchedulerServ
         if (!lifeCycle.canMoveToClosed()) {
             stopScheduler();
         }
-        lifeCycle.closed();
     }
 
     @Override
@@ -67,7 +65,7 @@ public class SchedulerServiceImpl extends AbstractLifeCycleService<SchedulerServ
             jobDetail.getJobDataMap().put("mongoServices", mongoServices);
 
             Trigger trigger = newTrigger()
-                    .withIdentity("workkardAgingTrigger", "workkardGroup")
+                    .withIdentity("mongoIdentity", "mongoGroup")
                     .startNow()
                     .withSchedule(CronScheduleBuilder.cronSchedule(ginieSettings.get("quartz.cron.expression", "0 0/5 * * * ?")))
                     .build();

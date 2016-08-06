@@ -31,12 +31,7 @@ public class BootStrap {
             kernelService.start();
             countDownLatch.await();
 
-            Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    countDownLatch.countDown();
-                }
-            }));
+            Runtime.getRuntime().addShutdownHook(new Thread(countDownLatch::countDown));
 
             kernelService.stop();
 
