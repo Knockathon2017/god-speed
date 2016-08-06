@@ -42,7 +42,7 @@ var Header = React.createClass({
                             <ul className="nav navbar-nav navbar-right">
                                	<li><AddService onHandleClick={this.handlerAddServiceClick} onAddingService={this.handlerAddService}/></li>
                                 <li className="dropdown">
-                                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dhruv Pal <span className="caret"></span></a>
+                                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">GodSpeed <span className="caret"></span></a>
                                     <ul className="dropdown-menu">
                                         <li><a href="#">Logout</a></li>
                                     </ul>
