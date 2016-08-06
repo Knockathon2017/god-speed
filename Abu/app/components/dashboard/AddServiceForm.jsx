@@ -45,7 +45,6 @@ var AddServiceForm = React.createClass({
         };
     },
     onClickCancel: function(evt){
-        debugger
         $(".ReactTags__tag").remove();
         this.refs.sName.value = '';
         this.refs.fName.value = '';
@@ -61,8 +60,8 @@ var AddServiceForm = React.createClass({
     onClickSave: function(evt){
         var that = this;
         axios.post(baseUrl+''+saveService,this.getPostJsonData(),POST_CONFIG).then(function(res){
-            alert("success");
             that.props.onSuccessAddingService();
+            $('#myModal').modal('hide');
         }, function(res){
             alert("error");
         });

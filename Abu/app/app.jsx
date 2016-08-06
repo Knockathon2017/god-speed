@@ -5,11 +5,11 @@ var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 
 var Login = require('Login');
 var Dashboard = require('Dashboard');
+var LogDisplay = require('LogDisplay');
 
 ReactDOM.render(
     <Router history={hashHistory}>
-        <Route path="/" component={Dashboard}>
-
+        <Route path="/" component={Login}>
         </Route>
     </Router>,
     document.getElementById("app")

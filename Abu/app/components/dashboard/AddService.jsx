@@ -12,6 +12,7 @@ var AddService = React.createClass({
         };
     },
     onAddClick: function(evt){
+        debugger;
         this.props.onHandleClick(evt);
     },
     onAddingService: function(evt){

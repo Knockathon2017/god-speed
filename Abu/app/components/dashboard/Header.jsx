@@ -33,12 +33,7 @@ var Header = React.createClass({
                             </a>
                         </div>
                         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <form className="navbar-form navbar-left">
-                                <div className="form-group">
-                                    <input type="text" className="form-control" placeholder="Search"/>
-                                </div>
-                                <button type="submit" className="btn btn-default">Submit</button>
-                            </form>
+                            <SearchService/>
                             <ul className="nav navbar-nav navbar-right">
                                	<li><AddService onHandleClick={this.handlerAddServiceClick} onAddingService={this.handlerAddService}/></li>
                                 <li className="dropdown">
@@ -52,7 +47,6 @@ var Header = React.createClass({
                         
                     </div>
                 </nav>
-                <SearchService />
             </div>
         );
     }

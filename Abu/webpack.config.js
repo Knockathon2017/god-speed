@@ -15,7 +15,8 @@ module.exports = {
             SearchService: 'app/components/dashboard/SearchService.jsx',
             ServiceList: 'app/components/dashboard/ServiceList.jsx',
             AddService: 'app/components/dashboard/AddService.jsx',
-            AddServiceForm: 'app/components/dashboard/AddServiceForm.jsx'
+            AddServiceForm: 'app/components/dashboard/AddServiceForm.jsx',
+            LogDisplay: 'app/components/logs/LogDisplay.jsx'
         },
         extensions: ['','.js','.jsx']
     },

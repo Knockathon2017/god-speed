@@ -9,9 +9,12 @@ var SearchService = React.createClass({
     render: function () {
 
         return (
-            <div>
-                Service Search
-            </div>
+            <form className="navbar-form navbar-left">
+                <div className="form-group">
+                    <input type="text" className="form-control" placeholder="Search"/>
+                </div>
+                <button type="submit" className="btn btn-default">Submit</button>
+            </form>
         )
     }
 });

@@ -23,20 +23,21 @@ var ServiceList = React.createClass({
             alert("error");
         });
     },
-    renderList: function(){
-        <tr>
-            <td>Host1</td>
-            <td>URL1</td>
-            <td>Tag1, Tag2, Tag3</td>
-            <td><span class="text-success">Active</span></td>
-            <td>
-                <a href="#">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="#">Logs</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="#" class="text-danger">Remove</a>
-            </td>
-        </tr>
-
+    onClickLog: function(evt){
+        var el = $(evt.currentTarget);
         debugger
+        var url = el.attr('url');
+    },
+    getProcessedUrl: function(a,b,c){
+        var ip = a.data.IP;
+        var methodName = a.data.methodUrl.replace(ip+'/',"");
+        //var fun = methodName.substr();
+        var url = ip.substr(0,ip.length-5);
+        url = '/log?u='+url+':3232&m='+methodName;
+        return url;
+    },
+    renderList: function(){
+        var that = this;
         var data = $.map(this.state.data, function(obj){
             return ($.tmpl('<tr>\
                  <td>Host1</td>\
@@ -49,10 +50,10 @@ var ServiceList = React.createClass({
                  <td><span class="text-success">Active</span></td>\
                  <td>\
                      <a href="#">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;\
-                     <a href="${url}" target="_blank">Logs</a>&nbsp;&nbsp;&nbsp;&nbsp;\
+                     <a href="{{html clickHandler(this, "eshu")}}" target="_blank" a="ref">Logs</a>&nbsp;&nbsp;&nbsp;&nbsp;\
                      <a href="#" class="text-danger">Remove</a>\
                  </td>\
-             </tr>', obj));
+             </tr>', $.extend({}, obj, {clickHandler: that.getProcessedUrl})));
         });
         var temp = $("<div id='temp'></div>");
         $.each(data, function(index, obj){
@@ -62,13 +63,12 @@ var ServiceList = React.createClass({
     },
     render: function () {
         var data = this.state.data;
-        debugger
         return (
             <div>
                 <div className="listing-screen">
                     <div className="col-md-12">
                         <div className="head-area">
-                            <span>Home</span><br/>
+                            <span></span><br/>
                             <h3 className="mrg0">My Services</h3>
                         </div>
                         <div>

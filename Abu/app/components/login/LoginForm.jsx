@@ -1,6 +1,8 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var axios = require('axios');
 var config = require('Config');
+var Dashboard = require('Dashboard');
 
 const BASE_URL = config.baseUrl;
 const loginUrl = BASE_URL+""+config.loginUrl;
@@ -34,7 +36,9 @@ var LoginForm = React.createClass({
         }
 
         axios.post(loginUrl,{username:usernameValue, password:passwordValue}, POST_CONFIG).then(function(res){
-            alert("success");
+            console.log("----unmount-----");
+            ReactDOM.unmountComponentAtNode(document.getElementById('app'));
+            ReactDOM.render(<Dashboard />, document.getElementById('app'));
         }, function(res){
             alert("error");
         });
@@ -43,11 +47,11 @@ var LoginForm = React.createClass({
         return (
             <form onSubmit={this.onloginButtonClick}>
                 <div className="form-group">
-                    <label for="exampleInputEmail1">Username</label>
+                    <label htmlFor="exampleInputEmail1">Username</label>
                     <input type="email" className="form-control" ref="username" placeholder="Username" />
                 </div>
                 <div className="form-group">
-                    <label for="exampleInputPassword1">Password</label>
+                    <label htmlFor="exampleInputPassword1">Password</label>
                     <input type="password" className="form-control" ref="password" placeholder="Password" />
                 </div>
                 <div className="checkbox">
