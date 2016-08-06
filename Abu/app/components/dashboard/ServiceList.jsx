@@ -68,14 +68,6 @@ var ServiceList = React.createClass({
                 <div className="listing-screen">
                     <div className="col-md-12">
                         <div className="head-area">
-                            <div className="pull-right">
-                                <button className="btn btn-success pull-right margin-right">Add New</button>
-                                <form className="form-inline pull-right margin-right">
-                                    <div className="form-group">
-                                        <input type="text" className="form-control" placeholder="Search"/>
-                                    </div>
-                                </form>
-                            </div>
                             <span>Home</span><br/>
                             <h3 className="mrg0">My Services</h3>
                         </div>

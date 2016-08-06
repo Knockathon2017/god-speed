@@ -24,7 +24,7 @@ var AddService = React.createClass({
 
         return (
             <div>
-                <button type="button" className="btn btn-default" data-toggle="modal" data-target="#myModal" onClick={this.onAddClick}>Add Service</button>
+                <button type="button" className="btn btn-success margin-top" data-toggle="modal" data-target="#myModal" onClick={this.onAddClick}>Add Service</button>
                 
                 <div className="modal fade" id="myModal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div className="modal-dialog" role="document">

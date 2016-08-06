@@ -37260,17 +37260,10 @@
 	            return false;
 	        }
 
-	        alert("send to server username=" + usernameValue + "     password=" + passwordValue);
-	        // axios.post(loginUrl,{username:usernameValue, password:passwordValue}, POST_CONFIG).then(function(res){
-	        //     console.log("-----success------"+res.data);
-	        // }, function(res){
-	        //     console.log("-----error------");
-	        // });
-
-	        axios.get(loginUrl).then(function (res) {
-	            console.log("-----success------" + res.data);
+	        axios.post(loginUrl, { username: usernameValue, password: passwordValue }, POST_CONFIG).then(function (res) {
+	            alert("success");
 	        }, function (res) {
-	            console.log("-----error------");
+	            alert("error");
 	        });
 	    },
 	    render: function render() {
@@ -38663,9 +38656,16 @@
 
 	var config = {};
 
-	config.baseUrl = 'http://172.16.1.101:8081';
-	config.loginUrl = '/info';
+	config.baseUrl = 'http://172.16.1.61:8080';
+	config.loginUrl = '/login';
 	config.info = '/info';
+	config.saveService = '/save';
+	config.list = '/list';
+	config.POST_CONFIG = {
+	    headers: {
+	        'Content-Type': 'application/json;charset=utf-8'
+	    }
+	};
 
 	module.exports = config;
 
@@ -38696,13 +38696,17 @@
 	            searchText: searchText.toLowerCase()
 	        });
 	    },
+	    handleAddSuccessService: function handleAddSuccessService(searchText) {
+	        debugger;
+	        this.refs.list.getList();
+	    },
 	    render: function render() {
 
 	        return React.createElement(
 	            'div',
 	            null,
-	            React.createElement(Header, { onAddServiceClick: this.handleAddService }),
-	            React.createElement(ServiceList, null)
+	            React.createElement(Header, { onAddServiceClick: this.handleAddService, onAddServiceSuccessClick: this.handleAddSuccessService }),
+	            React.createElement(ServiceList, { ref: 'list' })
 	        );
 	    }
 	});
@@ -38716,19 +38720,177 @@
 	'use strict';
 
 	var React = __webpack_require__(1);
+	var axios = __webpack_require__(241);
+	var config = __webpack_require__(263);
+
+	var baseUrl = config.baseUrl;
+	var list = config.list;
+	var POST_CONFIG = config.POST_CONFIG;
+
 
 	var ServiceList = React.createClass({
 	    displayName: 'ServiceList',
 
 	    getInitialState: function getInitialState() {
-	        return {};
+	        return {
+	            data: []
+	        };
+	    },
+	    componentDidMount: function componentDidMount() {
+	        this.getList();
+	    },
+	    getList: function getList() {
+	        var that = this;
+	        axios.get(baseUrl + '' + list, POST_CONFIG).then(function (res) {
+	            that.setState({
+	                data: res.data
+	            });
+	        }, function (res) {
+	            alert("error");
+	        });
+	    },
+	    renderList: function renderList() {
+	        React.createElement(
+	            'tr',
+	            null,
+	            React.createElement(
+	                'td',
+	                null,
+	                'Host1'
+	            ),
+	            React.createElement(
+	                'td',
+	                null,
+	                'URL1'
+	            ),
+	            React.createElement(
+	                'td',
+	                null,
+	                'Tag1, Tag2, Tag3'
+	            ),
+	            React.createElement(
+	                'td',
+	                null,
+	                React.createElement(
+	                    'span',
+	                    { 'class': 'text-success' },
+	                    'Active'
+	                )
+	            ),
+	            React.createElement(
+	                'td',
+	                null,
+	                React.createElement(
+	                    'a',
+	                    { href: '#' },
+	                    'Edit'
+	                ),
+	                '    ',
+	                React.createElement(
+	                    'a',
+	                    { href: '#' },
+	                    'Logs'
+	                ),
+	                '    ',
+	                React.createElement(
+	                    'a',
+	                    { href: '#', 'class': 'text-danger' },
+	                    'Remove'
+	                )
+	            )
+	        );
+
+	        debugger;
+	        var data = $.map(this.state.data, function (obj) {
+	            return $.tmpl('<tr>\
+	                 <td>Host1</td>\
+	                 <td>${url}</td>\
+	                 <td>\
+	                 {{each tags}}\
+	                    ${this}, \
+	                 {{/each}}\
+	                 </td>\
+	                 <td><span class="text-success">Active</span></td>\
+	                 <td>\
+	                     <a href="#">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;\
+	                     <a href="${url}" target="_blank">Logs</a>&nbsp;&nbsp;&nbsp;&nbsp;\
+	                     <a href="#" class="text-danger">Remove</a>\
+	                 </td>\
+	             </tr>', obj);
+	        });
+	        var temp = $("<div id='temp'></div>");
+	        $.each(data, function (index, obj) {
+	            temp.append(obj);
+	        });
+	        return temp.html();
 	    },
 	    render: function render() {
-
+	        var data = this.state.data;
+	        debugger;
 	        return React.createElement(
 	            'div',
 	            null,
-	            'Servive list'
+	            React.createElement(
+	                'div',
+	                { className: 'listing-screen' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'col-md-12' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'head-area' },
+	                        React.createElement(
+	                            'span',
+	                            null,
+	                            'Home'
+	                        ),
+	                        React.createElement('br', null),
+	                        React.createElement(
+	                            'h3',
+	                            { className: 'mrg0' },
+	                            'My Services'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        null,
+	                        React.createElement(
+	                            'table',
+	                            { className: 'table table-hover' },
+	                            React.createElement(
+	                                'thead',
+	                                null,
+	                                React.createElement(
+	                                    'tr',
+	                                    null,
+	                                    React.createElement(
+	                                        'th',
+	                                        null,
+	                                        'Host'
+	                                    ),
+	                                    React.createElement(
+	                                        'th',
+	                                        null,
+	                                        'URL'
+	                                    ),
+	                                    React.createElement(
+	                                        'th',
+	                                        { className: 'table-tags' },
+	                                        'Tags'
+	                                    ),
+	                                    React.createElement(
+	                                        'th',
+	                                        { className: 'table-status' },
+	                                        'Status'
+	                                    ),
+	                                    React.createElement('th', { className: 'table-actions' })
+	                                )
+	                            ),
+	                            React.createElement('tbody', { dangerouslySetInnerHTML: { __html: this.renderList() } })
+	                        )
+	                    )
+	                )
+	            )
 	        );
 	    }
 	});
@@ -38754,11 +38916,15 @@
 	    handlerAddServiceClick: function handlerAddServiceClick(evt) {
 	        this.props.onAddServiceClick();
 	    },
+	    handlerAddService: function handlerAddService(evt) {
+	        console.log("eshu");
+	        this.props.onAddServiceSuccessClick();
+	    },
 	    render: function render() {
 
 	        return React.createElement(
 	            'div',
-	            null,
+	            { className: 'nav-patch' },
 	            React.createElement(
 	                'nav',
 	                { className: 'navbar navbar-default no-radius remove-border border-bottom-black' },
@@ -38790,94 +38956,6 @@
 	                        'div',
 	                        { className: 'collapse navbar-collapse', id: 'bs-example-navbar-collapse-1' },
 	                        React.createElement(
-	                            'ul',
-	                            { className: 'nav navbar-nav' },
-	                            React.createElement(
-	                                'li',
-	                                { className: 'active' },
-	                                React.createElement(
-	                                    'a',
-	                                    { href: '#' },
-	                                    'Link ',
-	                                    React.createElement(
-	                                        'span',
-	                                        { className: 'sr-only' },
-	                                        '(current)'
-	                                    )
-	                                )
-	                            ),
-	                            React.createElement(
-	                                'li',
-	                                null,
-	                                React.createElement(
-	                                    'a',
-	                                    { href: '#' },
-	                                    'Link'
-	                                )
-	                            ),
-	                            React.createElement(
-	                                'li',
-	                                { className: 'dropdown' },
-	                                React.createElement(
-	                                    'a',
-	                                    { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
-	                                    'Dropdown ',
-	                                    React.createElement('span', { className: 'caret' })
-	                                ),
-	                                React.createElement(
-	                                    'ul',
-	                                    { className: 'dropdown-menu' },
-	                                    React.createElement(
-	                                        'li',
-	                                        null,
-	                                        React.createElement(
-	                                            'a',
-	                                            { href: '#' },
-	                                            'Action'
-	                                        )
-	                                    ),
-	                                    React.createElement(
-	                                        'li',
-	                                        null,
-	                                        React.createElement(
-	                                            'a',
-	                                            { href: '#' },
-	                                            'Another action'
-	                                        )
-	                                    ),
-	                                    React.createElement(
-	                                        'li',
-	                                        null,
-	                                        React.createElement(
-	                                            'a',
-	                                            { href: '#' },
-	                                            'Something else here'
-	                                        )
-	                                    ),
-	                                    React.createElement('li', { role: 'separator', className: 'divider' }),
-	                                    React.createElement(
-	                                        'li',
-	                                        null,
-	                                        React.createElement(
-	                                            'a',
-	                                            { href: '#' },
-	                                            'Separated link'
-	                                        )
-	                                    ),
-	                                    React.createElement('li', { role: 'separator', className: 'divider' }),
-	                                    React.createElement(
-	                                        'li',
-	                                        null,
-	                                        React.createElement(
-	                                            'a',
-	                                            { href: '#' },
-	                                            'One more separated link'
-	                                        )
-	                                    )
-	                                )
-	                            )
-	                        ),
-	                        React.createElement(
 	                            'form',
 	                            { className: 'navbar-form navbar-left' },
 	                            React.createElement(
@@ -38897,16 +38975,7 @@
 	                            React.createElement(
 	                                'li',
 	                                null,
-	                                React.createElement(AddService, { onHandleClick: this.handlerAddServiceClick })
-	                            ),
-	                            React.createElement(
-	                                'li',
-	                                null,
-	                                React.createElement(
-	                                    'a',
-	                                    { href: '#' },
-	                                    'Link'
-	                                )
+	                                React.createElement(AddService, { onHandleClick: this.handlerAddServiceClick, onAddingService: this.handlerAddService })
 	                            ),
 	                            React.createElement(
 	                                'li',
@@ -38914,7 +38983,7 @@
 	                                React.createElement(
 	                                    'a',
 	                                    { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
-	                                    'Dropdown ',
+	                                    'Dhruv Pal ',
 	                                    React.createElement('span', { className: 'caret' })
 	                                ),
 	                                React.createElement(
@@ -38926,35 +38995,7 @@
 	                                        React.createElement(
 	                                            'a',
 	                                            { href: '#' },
-	                                            'Action'
-	                                        )
-	                                    ),
-	                                    React.createElement(
-	                                        'li',
-	                                        null,
-	                                        React.createElement(
-	                                            'a',
-	                                            { href: '#' },
-	                                            'Another action'
-	                                        )
-	                                    ),
-	                                    React.createElement(
-	                                        'li',
-	                                        null,
-	                                        React.createElement(
-	                                            'a',
-	                                            { href: '#' },
-	                                            'Something else here'
-	                                        )
-	                                    ),
-	                                    React.createElement('li', { role: 'separator', className: 'divider' }),
-	                                    React.createElement(
-	                                        'li',
-	                                        null,
-	                                        React.createElement(
-	                                            'a',
-	                                            { href: '#' },
-	                                            'Separated link'
+	                                            'Logout'
 	                                        )
 	                                    )
 	                                )
@@ -39007,11 +39048,22 @@
 	var AddService = React.createClass({
 	    displayName: 'AddService',
 
+	    componentDidMount: function componentDidMount() {
+	        $('#myModal').on('hidden.bs.modal', function () {
+	            $(this).find("input,textarea,select").val('').end();
+	        });
+	    },
 	    getInitialState: function getInitialState() {
 	        return {};
 	    },
 	    onAddClick: function onAddClick(evt) {
 	        this.props.onHandleClick(evt);
+	    },
+	    onAddingService: function onAddingService(evt) {
+	        this.props.onAddingService(evt);
+	    },
+	    closePopup: function closePopup(evt) {
+	        //$('#myModal').modal('toggle');
 	    },
 	    render: function render() {
 
@@ -39020,7 +39072,7 @@
 	            null,
 	            React.createElement(
 	                'button',
-	                { type: 'button', className: 'btn btn-default', 'data-toggle': 'modal', 'data-target': '#myModal', onClick: this.onAddClick },
+	                { type: 'button', className: 'btn btn-success margin-top', 'data-toggle': 'modal', 'data-target': '#myModal', onClick: this.onAddClick },
 	                'Add Service'
 	            ),
 	            React.createElement(
@@ -39048,7 +39100,7 @@
 	                        React.createElement(
 	                            'div',
 	                            { className: 'modal-body no-pad' },
-	                            React.createElement(AddServiceForm, null)
+	                            React.createElement(AddServiceForm, { onSuccessAddingService: this.onAddingService, closePopup: this.closePopup })
 	                        )
 	                    )
 	                )
@@ -39072,8 +39124,11 @@
 	var config = __webpack_require__(263);
 	var baseUrl = config.baseUrl;
 	var info = config.info;
+	var saveService = config.saveService;
+	var POST_CONFIG = config.POST_CONFIG;
 
 	var infoUrl = baseUrl + "" + info;
+	//POST_CONFIG.headers.Authorization = '57a4e7bf1dbc234dc145933f';
 
 	var AddServiceForm = React.createClass({
 	    displayName: 'AddServiceForm',
@@ -39088,23 +39143,58 @@
 	            params: []
 	        };
 	    },
-	    getTagList: function getTagList(tags) {
+	    getTagList: function getTagList(tags, bPlane) {
 	        var result = [];
-	        if (tags.length > 0) {
+	        if (bPlane) {
+	            tags.forEach(function (obj, index) {
+	                result.push(obj.text);
+	            });
+	        } else if (tags.length > 0) {
 	            tags.forEach(function (obj, index) {
 	                result.push({ id: index, text: obj });
 	            });
 	        }
 	        return result;
 	    },
-	    onClickCancel: function onClickCancel(evt) {
-	        console.log("close popup");
+	    getPostJsonData: function getPostJsonData() {
+	        var that = this;
+	        return {
+	            "ip": that.state.serviceUrl,
+	            "port": "",
+	            "url": that.state.serviceUrl + "" + config.info,
+	            "logPath": that.state.logPath,
+	            "status": "",
+	            "tags": that.getTagList(that.state.tags, true),
+	            "methodUrl": that.state.serviceUrl + "" + that.state.functionName,
+	            "serviceName": that.state.serviceName
+	        };
 	    },
-	    onClickSave: function onClickSave(evt) {},
+	    onClickCancel: function onClickCancel(evt) {
+	        debugger;
+	        $(".ReactTags__tag").remove();
+	        this.refs.sName.value = '';
+	        this.refs.fName.value = '';
+	        this.setState({
+	            serviceUrl: "",
+	            logPath: "",
+	            tags: [],
+	            serviceName: "",
+	            functionName: "",
+	            params: []
+	        });
+	    },
+	    onClickSave: function onClickSave(evt) {
+	        var that = this;
+	        axios.post(baseUrl + '' + saveService, this.getPostJsonData(), POST_CONFIG).then(function (res) {
+	            alert("success");
+	            that.props.onSuccessAddingService();
+	        }, function (res) {
+	            alert("error");
+	        });
+	    },
 	    onBlurHandler: function onBlurHandler(evt) {
 	        var url = this.refs.urlTxt.value.trim();
 	        var that = this;
-	        debugger;
 	        axios.get(url + "" + config.info).then(function (res) {
 	            var _res$data = res.data;
 	            var methods = _res$data.methods;
@@ -39222,7 +39312,7 @@
 	                            'service_name : ',
 	                            React.createElement(
 	                                'span',
-	                                { className: 'help-text-focus' },
+	                                { className: 'help-text-focus', ref: 'sName' },
 	                                this.state.serviceName
 	                            )
 	                        ),
@@ -39233,7 +39323,7 @@
 	                            'method_name : ',
 	                            React.createElement(
 	                                'span',
-	                                { className: 'help-text-focus' },
+	                                { className: 'help-text-focus', ref: 'fName' },
 	                                this.state.functionName
 	                            )
 	                        ),
@@ -39263,19 +39353,19 @@
 	                            React.createElement(
 	                                'tbody',
 	                                null,
-	                                params.map(function (obj, index) {
+	                                Object.keys(params).map(function (obj) {
 	                                    return React.createElement(
 	                                        'tr',
 	                                        null,
 	                                        React.createElement(
 	                                            'td',
 	                                            null,
-	                                            obj.name
+	                                            params[obj].name
 	                                        ),
 	                                        React.createElement(
 	                                            'td',
 	                                            null,
-	                                            obj.type
+	                                            params[obj].type
 	                                        )
 	                                    );
 	                                })
@@ -39287,7 +39377,7 @@
 	                        { className: 'pad-top' },
 	                        React.createElement(
 	                            'button',
-	                            { type: 'submit', className: 'btn btn-default', onClick: this.onClickCancel },
+	                            { type: 'submit', className: 'btn btn-default', 'data-dismiss': 'modal', onClick: this.onClickCancel },
 	                            'Cancel'
 	                        ),
 	                        React.createElement(
