@@ -30,6 +30,6 @@ public class ResponseUtil {
     }
 
     public static Response token(String token) {
-        return Response.status(Response.Status.BAD_REQUEST).entity(JsonUtils.getResultJson("token", token)).build();
+        return Response.status(Response.Status.OK).entity(JsonUtils.getResultJson("token", token)).build();
     }
 }

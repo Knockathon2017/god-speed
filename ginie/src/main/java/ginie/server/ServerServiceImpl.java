@@ -34,11 +34,12 @@ public class ServerServiceImpl extends AbstractLifeCycleService<ServerService> i
     protected void dostart() throws GinieException {
         startServer();
         addLifeCycleListener(listener);
+        lifeCycle.started();
     }
 
     @Override
     protected void dostop() throws GinieException {
-
+        lifeCycle.stopped();
     }
 
     @Override
@@ -46,6 +47,7 @@ public class ServerServiceImpl extends AbstractLifeCycleService<ServerService> i
         if (!lifeCycle.canMoveToClosed()) {
             stopServer();
         }
+        lifeCycle.closed();
     }
 
 

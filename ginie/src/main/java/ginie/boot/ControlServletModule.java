@@ -3,7 +3,6 @@ package ginie.boot;
 import com.google.inject.servlet.ServletModule;
 import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
 import ginie.rest.CORSFilter;
-import ginie.rest.SecurityFilter;
 
 import java.util.HashMap;
 
@@ -19,6 +18,6 @@ public class ControlServletModule extends ServletModule {
         options.put("com.sun.jersey.api.json.POJOMappingFeature", "true");
         serve("/*").with(GuiceContainer.class, options);
         filter("/*").through(CORSFilter.class);
-        filter("/*").through(SecurityFilter.class);
+        /*filter("*//**//*").through(SecurityFilter.class);*/
     }
 }
