@@ -38761,7 +38761,7 @@
 	            null,
 	            React.createElement(
 	                'nav',
-	                { className: 'navbar navbar-default no-radius remove-border border-bottom-black' },
+	                { className: 'navbar navbar-default navbar-fixed-top no-radius remove-border border-bottom-black' },
 	                React.createElement(
 	                    'div',
 	                    { className: 'container-fluid' },
