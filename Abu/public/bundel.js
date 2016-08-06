@@ -39082,7 +39082,10 @@
 	        return {
 	            serviceUrl: "",
 	            logPath: "",
-	            tags: []
+	            tags: [],
+	            serviceName: "",
+	            functionName: "",
+	            params: []
 	        };
 	    },
 	    getTagList: function getTagList(tags) {
@@ -39109,10 +39112,15 @@
 	            var tags = _res$data.tags;
 
 	            var tagList = that.getTagList(tags);
+	            var mName = methods.name;
+	            var params = methods.params;
 	            that.setState({
 	                serviceUrl: url,
 	                logPath: '/logs/name:' + methods.name.substr(1, methods.name.length),
-	                tags: tagList
+	                tags: tagList,
+	                serviceName: service_name,
+	                functionName: mName,
+	                params: params
 	            });
 	        }, function (res) {
 	            console.log("-----error------");
@@ -39131,14 +39139,9 @@
 	        });
 	        this.setState({ tags: tags });
 	    },
-	    handleDrag: function handleDrag(tag, currPos, newPos) {
-	        var tags = this.state.tags;
-	        tags.splice(currPos, 1);
-	        tags.splice(newPos, 0, tag);
-	        this.setState({ tags: tags });
-	    },
 	    render: function render() {
 	        var tags = this.state.tags;
+	        var params = this.state.params;
 	        return React.createElement(
 	            'div',
 	            null,
@@ -39160,11 +39163,6 @@
 	                            'div',
 	                            { className: 'form-group col-md-8' },
 	                            React.createElement('input', { type: 'text', className: 'form-control', id: 'host', placeholder: 'Host', ref: 'urlTxt', onBlur: this.onBlurHandler })
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'form-group col-md-4' },
-	                            React.createElement('input', { type: 'text', className: 'form-control', id: 'port', placeholder: 'Port' })
 	                        ),
 	                        React.createElement(
 	                            'span',
@@ -39212,23 +39210,7 @@
 	                            ),
 	                            React.createElement(_reactTagInput.WithContext, { tags: tags,
 	                                handleDelete: this.handleDelete,
-	                                handleAddition: this.handleAddition,
-	                                handleDrag: this.handleDrag })
-	                        ),
-	                        React.createElement(
-	                            'div',
-	                            { className: 'form-group col-md-5' },
-	                            React.createElement(
-	                                'label',
-	                                { htmlFor: 'exampleInputEmail1' },
-	                                'Status'
-	                            ),
-	                            React.createElement('br', null),
-	                            React.createElement(
-	                                'label',
-	                                { htmlFor: 'status', className: 'status-text text-success' },
-	                                'Status'
-	                            )
+	                                handleAddition: this.handleAddition })
 	                        )
 	                    ),
 	                    React.createElement(
@@ -39241,7 +39223,7 @@
 	                            React.createElement(
 	                                'span',
 	                                { className: 'help-text-focus' },
-	                                'Multiply'
+	                                this.state.serviceName
 	                            )
 	                        ),
 	                        React.createElement('br', null),
@@ -39252,7 +39234,7 @@
 	                            React.createElement(
 	                                'span',
 	                                { className: 'help-text-focus' },
-	                                '/mul'
+	                                this.state.functionName
 	                            )
 	                        ),
 	                        React.createElement('br', null),
@@ -39281,34 +39263,22 @@
 	                            React.createElement(
 	                                'tbody',
 	                                null,
-	                                React.createElement(
-	                                    'tr',
-	                                    null,
-	                                    React.createElement(
-	                                        'td',
+	                                params.map(function (obj, index) {
+	                                    return React.createElement(
+	                                        'tr',
 	                                        null,
-	                                        'p1'
-	                                    ),
-	                                    React.createElement(
-	                                        'td',
-	                                        null,
-	                                        'int'
-	                                    )
-	                                ),
-	                                React.createElement(
-	                                    'tr',
-	                                    null,
-	                                    React.createElement(
-	                                        'td',
-	                                        null,
-	                                        'p2'
-	                                    ),
-	                                    React.createElement(
-	                                        'td',
-	                                        null,
-	                                        'int'
-	                                    )
-	                                )
+	                                        React.createElement(
+	                                            'td',
+	                                            null,
+	                                            obj.name
+	                                        ),
+	                                        React.createElement(
+	                                            'td',
+	                                            null,
+	                                            obj.type
+	                                        )
+	                                    );
+	                                })
 	                            )
 	                        )
 	                    ),
