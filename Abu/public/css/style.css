@@ -27,7 +27,7 @@ body{
 .head-area{
 	padding-top:60px;
 	line-height: 32px;
-	padding-left: 150px;
+	padding-left: 135px;
 	padding-bottom:15px;
 }
 
@@ -206,5 +206,12 @@ div.modal-content{
 	box-shadow: none;
 	border-radius: 2pt;
 	border: none;
+}
+
+
+.log-div{
+	height:78vh;
+	background: #222;
+	overflow-y: scroll;
 }
 
