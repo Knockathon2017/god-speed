@@ -19,12 +19,16 @@ var Dashboard = React.createClass({
             searchText: searchText.toLowerCase()
         });
     },
+    handleAddSuccessService: function (searchText) {
+        debugger;
+        this.refs.list.getList();
+    },
     render: function () {
 
         return (
             <div>
-                <Header onAddServiceClick={this.handleAddService}/>
-                <ServiceList />
+                <Header onAddServiceClick={this.handleAddService} onAddServiceSuccessClick={this.handleAddSuccessService}/>
+                <ServiceList ref='list' />
 
             </div>
         )

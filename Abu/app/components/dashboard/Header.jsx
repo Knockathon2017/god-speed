@@ -11,6 +11,10 @@ var Header = React.createClass({
     handlerAddServiceClick: function(evt){
         this.props.onAddServiceClick();
     },
+    handlerAddService: function(evt){
+        console.log("eshu")
+        this.props.onAddServiceSuccessClick();
+    },
     render: function () {
 
         return (
@@ -52,7 +56,7 @@ var Header = React.createClass({
                                 <button type="submit" className="btn btn-default">Submit</button>
                             </form>
                             <ul className="nav navbar-nav navbar-right">
-                               	<li><AddService onHandleClick={this.handlerAddServiceClick}/></li>
+                               	<li><AddService onHandleClick={this.handlerAddServiceClick} onAddingService={this.handlerAddService}/></li>
                                 <li><a href="#">Link</a></li>
                                 <li className="dropdown">
                                     <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>

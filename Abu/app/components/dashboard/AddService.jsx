@@ -1,6 +1,11 @@
 var React = require('react');
 var AddServiceForm = require('AddServiceForm');
 var AddService = React.createClass({
+    componentDidMount: function(){
+        $('#myModal').on('hidden.bs.modal', function () {
+            $(this).find("input,textarea,select").val('').end();
+        });
+    },
     getInitialState: function () {
         return {
 
@@ -8,6 +13,12 @@ var AddService = React.createClass({
     },
     onAddClick: function(evt){
         this.props.onHandleClick(evt);
+    },
+    onAddingService: function(evt){
+        this.props.onAddingService(evt);
+    },
+    closePopup: function(evt){
+        //$('#myModal').modal('toggle');
     },
     render: function () {
 
@@ -22,7 +33,7 @@ var AddService = React.createClass({
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div className="modal-body no-pad">
-                                <AddServiceForm />
+                                <AddServiceForm onSuccessAddingService={this.onAddingService} closePopup={this.closePopup}/>
                             </div>
                         </div>
                     </div>
