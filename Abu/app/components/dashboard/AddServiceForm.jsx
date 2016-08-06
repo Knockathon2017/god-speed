@@ -11,7 +11,10 @@ var AddServiceForm = React.createClass({
         return {
             serviceUrl: "",
             logPath: "",
-            tags: []
+            tags: [],
+            serviceName: "",
+            functionName: "",
+            params: []
         };
     },
     getTagList: function(tags){
@@ -36,10 +39,15 @@ var AddServiceForm = React.createClass({
         axios.get(url+""+config.info).then(function(res){
             var {methods, service_name,tags} = res.data;
             var tagList = that.getTagList(tags);
+            var mName = methods.name;
+            var params = methods.params;
             that.setState({
                 serviceUrl: url,
                 logPath: ('/logs/name:'+(methods.name.substr(1, methods.name.length))),
-                tags: tagList
+                tags: tagList,
+                serviceName: service_name,
+                functionName: mName,
+                params: params
             });
         }, function(res){
             console.log("-----error------");
@@ -58,14 +66,9 @@ var AddServiceForm = React.createClass({
         });
         this.setState({tags: tags});
     },
-    handleDrag: function(tag, currPos, newPos){
-        var tags = this.state.tags;
-        tags.splice(currPos, 1);
-        tags.splice(newPos, 0, tag);
-        this.setState({ tags: tags });
-    },
     render: function(){
         var tags = this.state.tags;
+        var params = this.state.params;
         return (
             <div>
                 <form>
@@ -74,9 +77,6 @@ var AddServiceForm = React.createClass({
                         <div className="row pad-bottom border-bottom-black">
                             <div className="form-group col-md-8">
                                 <input type="text" className="form-control" id="host" placeholder="Host" ref="urlTxt" onBlur={this.onBlurHandler}/>
-                            </div>
-                            <div className="form-group col-md-4">
-                                <input type="text" className="form-control" id="port" placeholder="Port"/>
                             </div>
                             <span className="help-text pad-left">Press <span className="help-text-focus">'Tab'</span> to fetch host information</span>
                         </div>
@@ -93,17 +93,12 @@ var AddServiceForm = React.createClass({
                                 <label htmlFor="exampleInputEmail1">Tags</label>
                                 <ReactTags tags={tags}
                                            handleDelete={this.handleDelete}
-                                           handleAddition={this.handleAddition}
-                                           handleDrag={this.handleDrag} />
-                            </div>
-                            <div className="form-group col-md-5">
-                                <label htmlFor="exampleInputEmail1">Status</label><br/>
-                                <label htmlFor="status" className="status-text text-success">Status</label>
+                                           handleAddition={this.handleAddition} />
                             </div>
                         </div>
                         <div className="row pad-all border-bottom-black">
-                            <span className="help-text">service_name : <span className="help-text-focus">Multiply</span></span><br/>
-                            <span className="help-text">method_name : <span className="help-text-focus">/mul</span></span><br/><br/>
+                            <span className="help-text">service_name : <span className="help-text-focus">{this.state.serviceName}</span></span><br/>
+                            <span className="help-text">method_name : <span className="help-text-focus">{this.state.functionName}</span></span><br/><br/>
                             <table className="table table-hover">
                                 <thead>
                                 <tr>
@@ -112,14 +107,16 @@ var AddServiceForm = React.createClass({
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>p1</td>
-                                    <td>int</td>
-                                </tr>
-                                <tr>
-                                    <td>p2</td>
-                                    <td>int</td>
-                                </tr>
+                                {
+                                    params.map(function(obj,index){
+                                        return (
+                                            <tr>
+                                                <td>{obj.name}</td>
+                                                <td>{obj.type}</td>
+                                            </tr>
+                                        );
+                                    })
+                                }
                                 </tbody>
                             </table>
                         </div>
