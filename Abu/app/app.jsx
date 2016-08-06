@@ -9,7 +9,7 @@ var LogDisplay = require('LogDisplay');
 
 ReactDOM.render(
     <Router history={hashHistory}>
-        <Route path="/" component={Login}>
+        <Route path="/" component={Dashboard}>
         </Route>
     </Router>,
     document.getElementById("app")
