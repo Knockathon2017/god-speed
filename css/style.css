@@ -171,3 +171,19 @@ div.modal-content{
 	opacity: 0.8;
 	color: #fff;
 }
+
+.modal-header{
+	border-bottom: none;
+	padding-top: 10px;
+}
+
+.modal-content{
+	box-shadow: none;
+	border-radius: 2pt;
+	border: none;
+}
+
+.modal-fade{
+	display: block;
+	background: rgba(0,0,0,0.8);
+}

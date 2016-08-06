@@ -167,6 +167,25 @@ div.modal-content{
 	background-color: transparent;
 }
 
+.close{
+	opacity: 0.8;
+	color: #fff;
+}
+
+.modal-header{
+	border-bottom: none;
+	padding-top: 10px;
+}
+
+.modal-content{
+	box-shadow: none;
+	border-radius: 2pt;
+	border: none;
+}
+
+
+
+/* React Tags */
 div.ReactTags__tags {
 	position: relative;
 }
@@ -231,3 +250,7 @@ div.ReactTags__suggestions ul li.active {
 	background: #b7cfe0;
 	cursor: pointer;
 }
+
+
+
+
