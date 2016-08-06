@@ -125,6 +125,10 @@ a.white-text:hover{
 	margin-right: 10pt;
 }
 
+.margin-top{
+	margin-top: 7pt;
+}
+
 /* Navigation Bar */
 
 nav{
@@ -218,4 +222,11 @@ div.modal-content{
 
 .mrg0{
 	margin-top:0;
+}
+
+.nav-patch{
+	height: 50px;
+	position: fixed;
+	top: 0;
+	width: 100%;
 }

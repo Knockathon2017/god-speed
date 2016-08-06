@@ -215,3 +215,15 @@ div.modal-content{
 	overflow-y: scroll;
 }
 
+.nav-patch{
+	height: 50px;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+.mrg0{
+	margin-top:0;
+}
+
+
