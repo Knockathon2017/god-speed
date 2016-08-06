@@ -75,7 +75,7 @@ var AddServiceForm = React.createClass({
                     <div className="stan-pad login-card margin-remove-top-bottom">
                         <h2 className="form-heading">Add New</h2>
                         <div className="row pad-bottom border-bottom-black">
-                            <div className="form-group col-md-8">
+                            <div className="form-group col-md-12">
                                 <input type="text" className="form-control" id="host" placeholder="Host" ref="urlTxt" onBlur={this.onBlurHandler}/>
                             </div>
                             <span className="help-text pad-left">Press <span className="help-text-focus">'Tab'</span> to fetch host information</span>
@@ -89,7 +89,7 @@ var AddServiceForm = React.createClass({
                                 <label htmlFor="exampleInputEmail1">Log Path</label><br/>
                                 <input type="text" className="form-control" placeholder="Log Path" value={this.state.logPath}/>
                             </div>
-                            <div className="form-group col-md-7">
+                            <div className="form-group col-md-12">
                                 <label htmlFor="exampleInputEmail1">Tags</label>
                                 <ReactTags tags={tags}
                                            handleDelete={this.handleDelete}
