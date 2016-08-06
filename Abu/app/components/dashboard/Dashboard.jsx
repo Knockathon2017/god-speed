@@ -2,7 +2,6 @@ var React = require('react');
 var ServiceList = require('ServiceList');
 var Header = require('Header');
 
-
 var Dashboard = React.createClass({
     getInitialState: function () {
         return {
