@@ -43,18 +43,14 @@ public class KernelServiceImpl extends AbstractLifeCycleService<KernelService> i
 
     @Override
     protected void dostop() throws GinieException {
-        if (lifeCycle.canMoveToStopped()) {
-            injector.getInstance(ServerService.class).stop();
-        }
-        lifeCycle.canMoveToStopped();
+        injector.getInstance(SchedulerService.class).stop();
+        injector.getInstance(ServerService.class).stop();
     }
 
     @Override
     protected void doClose() throws GinieException {
-        if (lifeCycle.canMoveToClosed()) {
-            injector.getInstance(ServerService.class).close();
-        }
-        lifeCycle.moveToClosed();
+        injector.getInstance(SchedulerService.class).close();
+        injector.getInstance(ServerService.class).close();
     }
 
     @Override

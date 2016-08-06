@@ -97,7 +97,7 @@ public class MongoServicesImpl implements MongoServices {
                 String statusfromUrl = getStatus(isUp);
                 ObjectId id = (ObjectId) document.get("_id");
 
-                if (!presentStatusinDB.equals(isUp)) {
+                if (!presentStatusinDB.equals(statusfromUrl)) {
                     repo.updateStatus(id, statusfromUrl);
                     LOGGER.info("Updated document status {} ", document);
                 }
